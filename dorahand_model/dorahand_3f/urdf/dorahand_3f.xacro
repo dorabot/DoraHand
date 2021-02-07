@@ -1,0 +1,640 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <xacro:macro name="dorahand_3f" params="prefix attach">
+    <!-- LINKS -->
+    <!-- virtual link interfacing with ee_mount on robot arm-->
+    <link name="${prefix}ee_base">
+      <visual>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 1" xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}base_link">
+      <inertial>
+        <origin
+          xyz="0.0672813969662091 -0.00768356734881204 0.0187166228013696"
+          rpy="0 0 0" />
+        <mass
+          value="0.24290765562894" />
+        <inertia
+          ixx="0.000485374037789049"
+          ixy="9.31561310575612E-07"
+          ixz="-2.29257203392714E-07"
+          iyy="0.000227060332879335"
+          iyz="5.35019929742971E-07"
+          izz="0.000349867933471234" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/base_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/base_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_left_back_link">
+      <inertial>
+        <origin
+          xyz="0.00019483352178247 -0.000419440597627267 0.0255853770396552"
+          rpy="0 0 0" />
+        <mass
+          value="0.0128902687777299" />
+        <inertia
+          ixx="2.04256915191886E-06"
+          ixy="-2.35569386608482E-10"
+          ixz="2.18230149240897E-08"
+          iyy="2.24144374524628E-06"
+          iyz="3.79030764132303E-08"
+          izz="1.28682240367971E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_back_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_back_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_left_middle_link">
+      <inertial>
+        <origin
+          xyz="-0.00150966280924338 -0.0285892179658439 -0.000301559535769803"
+          rpy="0 0 0" />
+        <mass
+          value="0.00938838672846468" />
+        <inertia
+          ixx="4.17372164352362E-06"
+          ixy="3.10407897337656E-08"
+          ixz="-5.89942743314402E-09"
+          iyy="5.7956092849583E-07"
+          iyz="6.05008829422796E-08"
+          izz="4.38626834146392E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_middle_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_middle_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_left_front_link">
+      <inertial>
+        <origin
+          xyz="-0.00592136016421135 -0.0222424596192618 0.000855058948252232"
+          rpy="0 0 0" />
+        <mass
+          value="0.0074701176810846" />
+        <inertia
+          ixx="1.42587170186682E-06"
+          ixy="-1.74359236069128E-07"
+          ixz="1.3857511122677E-09"
+          iyy="3.29102027915589E-07"
+          iyz="3.24784196535601E-09"
+          izz="1.35794289524286E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_front_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_left_front_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_right_back_link">
+      <inertial>
+        <origin
+          xyz="-0.000194833521932461 0.000419440596747304 0.0255853770427804"
+          rpy="0 0 0" />
+        <mass
+          value="0.0128902687789084" />
+        <inertia
+          ixx="2.04256915214369E-06"
+          ixy="-2.35569381481368E-10"
+          ixz="-2.18230148748549E-08"
+          iyy="2.24144374551552E-06"
+          iyz="-3.79030763870544E-08"
+          izz="1.28682240373217E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_back_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_back_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_right_middle_link">
+      <inertial>
+        <origin
+          xyz="-0.00150966146005244 -0.0285892169911503 -0.00070156077883083"
+          rpy="0 0 0" />
+        <mass
+          value="0.00938838751621504" />
+        <inertia
+          ixx="4.1737218432932E-06"
+          ixy="3.10406336164334E-08"
+          ixz="-5.89942209216765E-09"
+          iyy="5.79560973474594E-07"
+          iyz="6.05008875816039E-08"
+          izz="4.38626858675117E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_middle_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_middle_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_right_front_link">
+      <inertial>
+        <origin
+          xyz="-0.00592136016418708 -0.0222424596193247 0.000455058948168663"
+          rpy="0 0 0" />
+        <mass
+          value="0.00747011768113183" />
+        <inertia
+          ixx="1.42587170186701E-06"
+          ixy="-1.74359236068841E-07"
+          ixz="1.38575111224629E-09"
+          iyy="3.29102027916696E-07"
+          iyz="3.24784196543285E-09"
+          izz="1.35794289524404E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_front_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_right_front_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_middle_back_link">
+      <inertial>
+        <origin
+          xyz="-0.000194833997355502 0.000419436995211427 0.0255853701766141"
+          rpy="0 0 0" />
+        <mass
+          value="0.012890265520984" />
+        <inertia
+          ixx="2.0425689867734E-06"
+          ixy="-2.35571463557394E-10"
+          ixz="-2.18229934972707E-08"
+          iyy="2.24144377873853E-06"
+          iyz="-3.79030113681871E-08"
+          izz="1.28682249558977E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_back_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_back_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_middle_middle_link">
+      <inertial>
+        <origin
+          xyz="-0.00150979108016121 0.0285890700545292 0.000301729931564307"
+          rpy="0 0 0" />
+        <mass
+          value="0.00938825949148075" />
+        <inertia
+          ixx="4.17369565406504E-06"
+          ixy="-3.10277422459172E-08"
+          ixz="5.89605554453313E-09"
+          iyy="5.79552540822107E-07"
+          iyz="6.04947010219042E-08"
+          izz="4.38623686379646E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_middle_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_middle_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}finger_middle_front_link">
+      <inertial>
+        <origin
+          xyz="0.00592136034733081 -0.022242462437103 -0.000855059709843302"
+          rpy="0 0 0" />
+        <mass
+          value="0.00747011723813315" />
+        <inertia
+          ixx="1.4258720066274E-06"
+          ixy="1.74359302544949E-07"
+          ixz="1.38575179648268E-09"
+          iyy="3.29102005090482E-07"
+          iyz="-3.24785673718493E-09"
+          izz="1.3579431792442E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_front_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="/opt/dorabot/resources/end_effectors/dorahand_3f/meshes/finger_middle_front_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- virtual link, equivlent of TCP (Tool Center Point) -->
+    <link name="${prefix}ee_tip_0">
+      <visual>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}ee_tip_left">
+      <visual>
+        <geometry>
+          <box size="0.0 0.0 0.0"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}ee_tip_right">
+      <visual>
+        <geometry>
+          <box size="0.0 0.0 0.0"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}ee_tip_middle">
+      <visual>
+        <geometry>
+          <box size="0.0 0.0 0.0"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}eye_in_hand">
+      <visual>
+        <geometry>
+          <box size="0.0 0.0 0.0"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual>
+    </link>
+    <!-- END LINKS -->
+
+    <!-- JOINTS -->
+    <!-- virtual joint, interfacing with arm -->
+    <joint name="${prefix}ee_base_joint" type="fixed">
+      <parent link="${attach}ee_mount"/>
+      <child link="${prefix}ee_base"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- virtual joint, connect ee_base to various link in end effector -->
+    <joint name="${prefix}base_joint" type="fixed">
+      <parent link="${prefix}ee_base"/>
+      <child link="${prefix}base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+    <joint name="${prefix}finger_left_back_joint" type="revolute">
+      <origin
+        xyz="0.0658 -0.0485 0.04"
+        rpy="-1.5708 0 -1.5708" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}finger_left_back_link" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_left_middle_joint" type="revolute">
+      <origin
+        xyz="0 0 0.06025"
+        rpy="-1.5707963267949 0 0" />
+      <parent link="${prefix}finger_left_back_link" />
+      <child link="${prefix}finger_left_middle_link" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint
+      name="${prefix}finger_left_front_joint" type="revolute">
+      <origin
+        xyz="0 -0.055 0"
+        rpy="0 0 0" />
+      <parent link="${prefix}finger_left_middle_link" />
+      <child link="${prefix}finger_left_front_link" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_right_back_joint" type="revolute">
+      <origin
+        xyz="0.0658000000000001 -0.0484999999999942 -0.0400000005780693"
+        rpy="1.57079632679489 0 1.5707963267949" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}finger_right_back_link" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_right_middle_joint" type="revolute">
+      <origin
+        xyz="0 0 0.06025"
+        rpy="-1.5707963267949 0 3.14159265358979" />
+      <parent link="${prefix}finger_right_back_link" />
+      <child link="${prefix}finger_right_middle_link" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_right_front_joint" type="revolute">
+      <origin
+        xyz="0 -0.055 0"
+        rpy="0 0 0" />
+      <parent link="${prefix}finger_right_middle_link" />
+      <child link="${prefix}finger_right_front_link" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_middle_back_joint" type="fixed">
+      <origin
+        xyz="0.0658 0.0485000000000115 0"
+        rpy="-1.57079632679489 0 -1.5707963267949" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}finger_middle_back_link" />
+      <axis xyz="0 0 0" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_middle_middle_joint" type="revolute">
+      <origin
+        xyz="0 0 0.06025"
+        rpy="1.5707963267949 0 3.14159265358979" />
+      <parent link="${prefix}finger_middle_back_link" />
+      <child link="${prefix}finger_middle_middle_link" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <joint name="${prefix}finger_middle_front_joint" type="revolute">
+      <origin
+        xyz="0 0.055 0"
+        rpy="0 0 -3.14159265358979" />
+      <parent link="${prefix}finger_middle_middle_link" />
+      <child link="${prefix}finger_middle_front_link" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="-1.5708"
+        upper="1.5708"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+    <!-- virtual joint point to ee_tip_<number> (TCP) -->
+    <joint name="${prefix}ee_tip_0_joint" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}ee_tip_0"/>
+      <origin xyz="0.2294 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}ee_tip_left_joint" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}ee_tip_left"/>
+      <origin xyz="0.2294 -0.0222741 0.0404993" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}ee_tip_right_joint" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}ee_tip_right"/>
+      <origin xyz="0.2294 -0.0222741 -0.0404993" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}ee_tip_middle_joint" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}ee_tip_middle"/>
+      <origin xyz="0.2294 0.0420556 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}eye_in_hand_joint" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}eye_in_hand"/>
+      <origin xyz="0.083 0.025 0.091" rpy="${-DEG2RAD * 90} 0 ${-DEG2RAD * 90}"/>
+    </joint>
+
+    <!-- END JOINTS -->
+  </xacro:macro>
+</robot>

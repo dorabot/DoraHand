@@ -1,0 +1,44 @@
+#!/bin/sh
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.2.0-5ubuntu1~20.04_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.2.0-5ubuntu1~20.04_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf-lite17_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/z/zlib/zlib1g_1.2.11.dfsg-2ubuntu1.2_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/z/zlib/zlib1g-dev_1.2.11.dfsg-2ubuntu1.2_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf17_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf-dev_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotoc17_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/universe/p/protobuf/protobuf-compiler_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotoc-dev_3.6.1.3-2ubuntu5_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c https://dorahand.dorabot.org/binary_blob/dorahand-1.1.1-Linux.deb
+dpkg -i *.deb
+rm *.deb
