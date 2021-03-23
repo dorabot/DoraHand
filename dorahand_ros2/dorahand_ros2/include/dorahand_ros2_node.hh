@@ -24,6 +24,28 @@
 #include <dorahand_interfaces_ros2/srv/grasp_control.hpp>
 #include <dorahand_interfaces_ros2/srv/set_hand_state.hpp>
 
+#include "std_msgs/msg/float32_multi_array.hpp"
+
+#include <chrono>
+#include <functional>
+#include <memory>
+
+// COMPONENT AREA
+#define PALM_AREA_ID (0) 
+#define LF_AREA_ID (1) 
+#define RF_AREA_ID (2)
+#define MF_AREA_ID (3)
+
+// DATA AREA
+#define ANGLE_AREA_ID (0)
+#define SPEED_AREA_ID (1)
+#define FORCE_AREA_ID (2)
+#define CURRENT_AREA_ID (3)
+
+// JOINT ID
+#define MJ_ID (0)
+#define PJ_ID (1)
+
 namespace dr
 {
   namespace dorahand_ros2_node
@@ -47,10 +69,16 @@ namespace dr
       void create_services();
       bool set_init(const nlohmann::json &config);
       void command_map_init();
+      void timer_callback();
+
+      void hand_data_pub(DexterousHandMessage *message);
+      void update_finger_data(int F_ID, const DexterousHandFingerMessage *message);
+      void update_joint_data(int F_ID, int J_ID, const DexterousHandFingerMessage *message);
 
     public:    
       IO_SERCAN_HAND ee_obj_;    
       std::atomic<bool> query_thread_run_;
+      std_msgs::msg::Float32MultiArray hand_msg_;
 
       std::vector<std::string> command_name_ =
       {
@@ -90,13 +118,15 @@ namespace dr
       std::shared_ptr<dorahand_interfaces_ros2::srv::SetHandState::Response> response);
 
     private:
+      rclcpp::TimerBase::SharedPtr timer_;
+      rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr hand_pub_;
       rclcpp::Service<dorahand_interfaces_ros2::srv::ControlJoint>::SharedPtr control_joint_srv_;
       rclcpp::Service<dorahand_interfaces_ros2::srv::GetHandState>::SharedPtr get_hand_state_srv_;
       rclcpp::Service<dorahand_interfaces_ros2::srv::GraspControl>::SharedPtr grasp_control_srv_;
       rclcpp::Service<dorahand_interfaces_ros2::srv::SetHandState>::SharedPtr set_hand_state_srv_;
       rclcpp::callback_group::CallbackGroup::SharedPtr cb_dr1_;
 
-      DexterousHandMessage *dh_message_; 
+      DexterousHandMessage *dh_message_;
     }; // class DorahandRos2Node
   } // namespace dorahand_ros2_node
 } // namespace dr

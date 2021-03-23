@@ -70,9 +70,26 @@ namespace dr
       }
     }
 
+    void DorahandRos2Node::timer_callback()
+    {
+      bool ret = false;
+      ret = ee_obj_.read_hand_status(dh_message_);
+      if (ret)
+      {
+        // std::cout << "In the timer callback" << std::endl;
+        hand_data_pub(dh_message_);
+        hand_pub_->publish(hand_msg_);
+        hand_msg_.data.clear();
+        dh_message_->Clear();
+      }
+    }
+
     void DorahandRos2Node::create_services()
     {
       cb_dr1_ = this->create_callback_group(rclcpp::callback_group::CallbackGroupType::Reentrant);
+
+      timer_ = this->create_wall_timer(std::chrono::milliseconds(5), std::bind(&DorahandRos2Node::timer_callback, this));
+      hand_pub_ = this->create_publisher<std_msgs::msg::Float32MultiArray>("hand_data", 10);
 
       get_hand_state_srv_ = this->create_service<dorahand_interfaces_ros2::srv::GetHandState>(
           "dorahand_service/get_hand_state",
@@ -110,6 +127,76 @@ namespace dr
               std::placeholders::_2),
           rmw_qos_profile_services_default,
           cb_dr1_);
+    }
+
+    void DorahandRos2Node::hand_data_pub(DexterousHandMessage *message)
+    { 
+      for (int i = 0; i < message->fingers_size (); i++)
+      {
+        if (message->fingers(i).finger_id() == PALM_AREA_ID)
+        {
+          update_finger_data(PALM_AREA_ID, &message->fingers(i));
+        }
+        else if (message->fingers(i).finger_id() == LF_AREA_ID)
+        {
+          update_finger_data(LF_AREA_ID, &message->fingers(i));
+        }
+        else if (message->fingers(i).finger_id() == RF_AREA_ID)
+        {
+          update_finger_data(RF_AREA_ID, &message->fingers(i));
+        }
+        else if (message->fingers(i).finger_id() == MF_AREA_ID)
+        {
+          update_finger_data(MF_AREA_ID, &message->fingers(i));
+        }
+      }
+    }
+
+    void DorahandRos2Node::update_finger_data(int F_ID, const DexterousHandFingerMessage *message)
+    {
+      if (message->joint_id() == PJ_ID)
+      {
+        update_joint_data(F_ID, PJ_ID, message);
+      }
+      else if (message->joint_id() == MJ_ID)
+      {
+        update_joint_data(F_ID, MJ_ID, message);
+      }
+    }
+
+    void DorahandRos2Node::update_joint_data(int F_ID, int J_ID, const DexterousHandFingerMessage *message)
+    {
+      float draw_data;
+      hand_msg_.data.push_back(F_ID);
+      hand_msg_.data.push_back(J_ID);
+      draw_data = message->position();
+      hand_msg_.data.push_back(draw_data);
+      draw_data = message->velocity();
+      hand_msg_.data.push_back(draw_data);
+      draw_data = message->current();
+      hand_msg_.data.push_back(draw_data);
+      hand_msg_.data.push_back(0);
+      for (int i=0;i<message->force_size();i++)
+      {
+        draw_data = message->force(i);
+        switch(i)
+        {
+          case 0:
+            hand_msg_.data.push_back(draw_data);
+            break;
+          case 1:
+            hand_msg_.data.push_back(draw_data);
+            break;
+          case 2:
+            hand_msg_.data.push_back(draw_data);
+            break;
+          case 3:
+            hand_msg_.data.push_back(draw_data);
+            break;
+          default:
+            break;
+        }
+      }
     }
 
     void DorahandRos2Node::get_hand_state(const std::shared_ptr<dorahand_interfaces_ros2::srv::GetHandState::Request> request,

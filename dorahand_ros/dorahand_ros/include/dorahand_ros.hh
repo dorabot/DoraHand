@@ -23,6 +23,25 @@
 #include <dorahand_ros/GraspControl.h>
 #include <dorahand_ros/SetHandState.h>
 
+#include "ros/ros.h"
+#include "std_msgs/Float32MultiArray.h"
+
+// COMPONENT AREA
+#define PALM_AREA_ID (0) 
+#define LF_AREA_ID (1) 
+#define RF_AREA_ID (2)
+#define MF_AREA_ID (3)
+
+// DATA AREA
+#define ANGLE_AREA_ID (0)
+#define SPEED_AREA_ID (1)
+#define FORCE_AREA_ID (2)
+#define CURRENT_AREA_ID (3)
+
+// JOINT ID
+#define MJ_ID (0)
+#define PJ_ID (1)
+
 enum error_code
 {
   SUCCESS = 1,
@@ -45,6 +64,10 @@ dorahand_ros::GraspControl::Response &response);
 
 bool set_hand_state(dorahand_ros::SetHandState::Request &request,
 dorahand_ros::SetHandState::Response &response);
+
+void hand_data_pub(DexterousHandMessage *message);
+void update_finger_data (int F_ID, const DexterousHandFingerMessage *message);
+void update_joint_data (int F_ID, int J_ID, const DexterousHandFingerMessage *message);
 
 IO_SERCAN_HAND ee_obj_; 
    
@@ -74,6 +97,6 @@ std::vector<std::string> command_name_ =
 };
 std::map<int,std::string> command_map_;
 
-DexterousHandMessage *dh_message_; 
+std_msgs::Float32MultiArray hand_msg_;
 
 #endif // __DORAHAND_ROS_NODE_HH__

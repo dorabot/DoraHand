@@ -14,7 +14,6 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
-#include "ros/ros.h"
 #include "dorahand_ros.hh"
 
 using namespace dr;
@@ -42,13 +41,84 @@ bool set_init(const nlohmann::json &config)
       ret = ee_obj_.read_hand_status (message);
       if (ret)
       {
-        message->Clear (); 
+        hand_data_pub(message);
+        message->Clear(); 
       }
     }
   }};
   query_hand_thread.detach();
 
   return true;
+}
+
+void hand_data_pub(DexterousHandMessage *message)
+{ 
+  for (int i = 0; i < message->fingers_size (); i++)
+  {
+    if (message->fingers(i).finger_id() == PALM_AREA_ID)
+    {
+      update_finger_data(PALM_AREA_ID, &message->fingers(i));
+    }
+    else if (message->fingers(i).finger_id() == LF_AREA_ID)
+    {
+      update_finger_data(LF_AREA_ID, &message->fingers(i));
+    }
+    else if (message->fingers(i).finger_id() == RF_AREA_ID)
+    {
+      update_finger_data(RF_AREA_ID, &message->fingers(i));
+    }
+    else if (message->fingers(i).finger_id() == MF_AREA_ID)
+    {
+      update_finger_data(MF_AREA_ID, &message->fingers(i));
+    }
+  }
+}
+
+void update_finger_data(int F_ID, const DexterousHandFingerMessage *message)
+{
+  if (message->joint_id() == PJ_ID)
+  {
+    update_joint_data(F_ID, PJ_ID, message);
+  }
+  else if (message->joint_id() == MJ_ID)
+  {
+    update_joint_data(F_ID, MJ_ID, message);
+  }
+}
+
+void update_joint_data(int F_ID, int J_ID, const DexterousHandFingerMessage *message)
+{
+  float draw_data;
+  hand_msg_.data.push_back(F_ID);
+  hand_msg_.data.push_back(J_ID);
+  draw_data = message->position();
+  hand_msg_.data.push_back(draw_data);
+  draw_data = message->velocity();
+  hand_msg_.data.push_back(draw_data);
+  draw_data = message->current();
+  hand_msg_.data.push_back(draw_data);
+  hand_msg_.data.push_back(0);
+  for (int i=0;i<message->force_size();i++)
+  {
+    draw_data = message->force(i);
+    switch(i)
+    {
+      case 0:
+        hand_msg_.data.push_back(draw_data);
+        break;
+      case 1:
+        hand_msg_.data.push_back(draw_data);
+        break;
+      case 2:
+        hand_msg_.data.push_back(draw_data);
+        break;
+      case 3:
+        hand_msg_.data.push_back(draw_data);
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 void command_map_init()
@@ -142,6 +212,7 @@ int main(int argc, char ** argv)
   ros::init(argc, argv, "dorahand_ros");
   ros::NodeHandle nh;
 
+  ros::Publisher hand_pub = nh.advertise<std_msgs::Float32MultiArray>("/hand_data", 10);
   ros::ServiceServer get_hand_state_srv = nh.advertiseService("dorahand_service/get_hand_state", get_hand_state);
   ros::ServiceServer set_hand_state_srv = nh.advertiseService("dorahand_service/set_hand_state", set_hand_state);
   ros::ServiceServer grasp_control_srv = nh.advertiseService("dorahand_service/grasp_control", grasp_control);
@@ -152,9 +223,26 @@ int main(int argc, char ** argv)
   input_sercan >> config_sercan;
   set_init(config_sercan);
 
-  query_thread_run_ = false;
+  DexterousHandMessage *message = new DexterousHandMessage();
 
-  ros::spin();
+  query_thread_run_ = false;
+  bool ret;
+
+  while(ros::ok())
+  {
+    ret = false;
+    std::this_thread::sleep_for (std::chrono::milliseconds (5));
+    ret = ee_obj_.read_hand_status (message);
+    if (ret)
+    {
+      hand_data_pub(message);
+      hand_pub.publish(hand_msg_);
+      hand_msg_.data.clear();
+      message->Clear(); 
+    }
+
+    ros::spinOnce();
+  }
 
   return 0;
 }
