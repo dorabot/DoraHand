@@ -1,9 +1,14 @@
-#!/bin/sh
-wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.2.0-5ubuntu1~20.04_amd64.deb
+#!/bin/bash
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.2.0-13ubuntu1_amd64.deb
 dpkg -i *.deb
 rm *.deb
 
-wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.2.0-5ubuntu1~20.04_amd64.deb
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.2.0-13ubuntu1_amd64.deb
+dpkg -i *.deb
+rm *.deb
+
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libstdc++6_10.2.0-13ubuntu1_amd64.deb
 dpkg -i *.deb
 rm *.deb
 
@@ -39,6 +44,11 @@ wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotoc-dev_3
 dpkg -i *.deb
 rm *.deb
 
-wget -c https://dorahand.dorabot.org/binary_blob/dorahand-1.1.1-Linux.deb
+wget -c http://cn.archive.ubuntu.com/ubuntu/pool/universe/n/nlohmann-json3/nlohmann-json3-dev_3.7.3-1_all.deb
+dpkg -i *.deb
+rm *.deb
+
+
+wget -c https://dorahand.dorabot.org/binary_blob/libdorahand-dev_1.1.12-0ubuntu1-amd64.deb
 dpkg -i *.deb
 rm *.deb

@@ -219,8 +219,6 @@ int main(int argc, char ** argv)
   ros::ServiceServer control_joint_srv = nh.advertiseService("dorahand_service/control_joint", control_joint);
 
   nlohmann::json config_sercan;
-  std::ifstream input_sercan("/etc/dorabot/dorahand/config.json");
-  input_sercan >> config_sercan;
   set_init(config_sercan);
 
   DexterousHandMessage *message = new DexterousHandMessage();

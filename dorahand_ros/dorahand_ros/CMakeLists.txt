@@ -24,7 +24,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Threads)
-find_package(Protobuf REQUIRED)
+find_package(Protobuf 3.6.1 REQUIRED)
 find_package(urdf REQUIRED)
 find_package(dorahand REQUIRED)
 
@@ -47,7 +47,8 @@ catkin_package(
 )
 
 include_directories(
-  /usr/include/dorahand
+  ${dorahand_INCLUDE_DIRS}
+  ${Protobuf_INCLUDE_DIRS}
 )
 
 include_directories(
@@ -60,4 +61,4 @@ add_executable(dorahand_ros src/dorahand_ros.cpp)
 target_link_libraries(dorahand_ros
   ${catkin_LIBRARIES}
 )
-target_link_libraries(dorahand_ros dorahand)
+target_link_libraries(dorahand_ros dorahand  ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})

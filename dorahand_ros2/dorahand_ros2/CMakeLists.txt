@@ -17,12 +17,12 @@ endif()
 
 include_directories(include)
 include_directories(${Protobuf_INCLUDE_DIRS})
-include_directories(/usr/include/dorahand)
+include_directories(${dorahand_INCLUDE_DIRS})
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(Threads)
-find_package(Protobuf REQUIRED)
+find_package(Protobuf 3.6.1 REQUIRED)
 find_package(dorahand REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -38,7 +38,7 @@ src/dorahand_ros2_node.cc
 
 add_executable(dorahand_ros2 ${SOURCE})
 target_include_directories(dorahand_ros2 PUBLIC include)
-target_link_libraries(${PROJECT_NAME} dorahand)
+target_link_libraries(${PROJECT_NAME} dorahand ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})
 ament_target_dependencies(dorahand_ros2 dorahand dorahand_interfaces_ros2 rclcpp std_msgs std_srvs urdf ament_index_cpp)
 
 install(TARGETS dorahand_ros2
