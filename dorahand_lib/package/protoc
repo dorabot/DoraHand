@@ -49,6 +49,6 @@ dpkg -i *.deb
 rm *.deb
 
 
-wget -c https://dorahand.dorabot.org/binary_blob/libdorahand-dev_1.1.12-0ubuntu1-amd64.deb
+wget -c https://dorahand.dorabot.org/binary_blob/libdorahand-dev_1.1.13-0ubuntu1-amd64.deb
 dpkg -i *.deb
 rm *.deb
