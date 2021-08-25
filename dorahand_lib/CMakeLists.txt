@@ -10,11 +10,11 @@ find_package(dorahand REQUIRED)
 
 # add include
 include_directories(${Protobuf_INCLUDE_DIRS})
-include_directories(/usr/include/dorabot/dorahand)
+include_directories(${dorahand_INCLUDE_DIRS})
 
 # scan all source file
 aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
 
 # build target
 add_executable(demo_call_lib ${SRC_LIST})
-target_link_libraries(${PROJECT_NAME} dorahand ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})
