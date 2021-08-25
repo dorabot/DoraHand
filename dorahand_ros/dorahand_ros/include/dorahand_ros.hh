@@ -50,7 +50,7 @@ enum error_code
 };
 
 void create_services();
-bool set_init(const nlohmann::json &config);
+bool set_init(std::string config_path);
 void command_map_init();
 
 bool control_joint(dorahand_ros::ControlJoint::Request &request,
