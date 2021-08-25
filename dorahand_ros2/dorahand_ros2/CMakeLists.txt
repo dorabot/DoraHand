@@ -38,7 +38,7 @@ src/dorahand_ros2_node.cc
 
 add_executable(dorahand_ros2 ${SOURCE})
 target_include_directories(dorahand_ros2 PUBLIC include)
-target_link_libraries(${PROJECT_NAME} dorahand ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${PROTOBUF_LIBRARIES} ${dorahand_LIBRARIES})
 ament_target_dependencies(dorahand_ros2 dorahand dorahand_interfaces_ros2 rclcpp std_msgs std_srvs urdf ament_index_cpp)
 
 install(TARGETS dorahand_ros2

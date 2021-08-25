@@ -18,11 +18,11 @@
 
 using namespace dr;
 
-bool set_init(const nlohmann::json &config)
+bool set_init(std::string config_path)
 {
   command_map_init();
 
-  ee_obj_.on_init();
+  ee_obj_.on_init(config);
   ee_obj_.set_callback();
   ee_obj_.on_monitor();
 
@@ -218,8 +218,7 @@ int main(int argc, char ** argv)
   ros::ServiceServer grasp_control_srv = nh.advertiseService("dorahand_service/grasp_control", grasp_control);
   ros::ServiceServer control_joint_srv = nh.advertiseService("dorahand_service/control_joint", control_joint);
 
-  nlohmann::json config_sercan;
-  set_init(config_sercan);
+  set_init("/usr/etc/dorabot/dorahand/config.json");
 
   DexterousHandMessage *message = new DexterousHandMessage();
 
