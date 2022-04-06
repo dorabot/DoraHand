@@ -22,7 +22,7 @@ bool set_init(std::string config_path)
 {
   command_map_init();
 
-  ee_obj_.on_init(config);
+  ee_obj_.on_init(config_path);
   ee_obj_.set_callback();
   ee_obj_.on_monitor();
 
