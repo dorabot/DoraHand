@@ -48,6 +48,6 @@ wget -c http://cn.archive.ubuntu.com/ubuntu/pool/universe/n/nlohmann-json3/nlohm
 dpkg -i *.deb
 rm *.deb
 
-wget -c http://dorahand.dorabot.org/binary_blob/libdorahand-dev_1.1.16-0ubuntu1-amd64.deb
+wget -c http://dorahand.dorabot.org/binary_blob/libdorahand-dev_1.1.17-0ubuntu1-amd64.deb
 dpkg -i *.deb
 rm *.deb

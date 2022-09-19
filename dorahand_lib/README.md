@@ -1,9 +1,9 @@
-# how to update dep
+# how to update dependencies
 
 - sudo apt update
 - sudo apt-get install make dpkg-dev libc6-dev gcc g++ build-essential cmake wget udev
 
-# how to install dorahand-1.1.1-linux.dev
+# how to install dorahand-1.1.17-linux.dev
 
 - cd package
 - sudo ./protoc

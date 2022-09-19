@@ -2,10 +2,10 @@
  * @file main.cc
  * @author Dorabot Inc.
  * @brief library for control DoraHand
- * @version 1.1.16
- * @date 2021-8-24
+ * @version 1.1.17
+ * @date 2022-09-19
  *
- * @copyright Copyright (c) 2021
+ * @copyright Copyright (c) 2021-2022
  *
  */
 #include "rt_key_parameter.pb.h"
@@ -145,7 +145,7 @@ int main (int argc, char **argv)
       time_t timep;
       time (&timep);
       char timestamp[64];
-      strftime( timestamp, sizeof(timestamp), "%Y/%m/%d %X : ",localtime(&timep));
+      strftime( timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S",localtime(&timep));
       log_str = timestamp;
       log_str += message->cmd_param_string();
       std::cout<<log_str<<std::endl;
