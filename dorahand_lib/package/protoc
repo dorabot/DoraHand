@@ -1,14 +1,14 @@
 #!/bin/bash
 
-wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.2.0-13ubuntu1_amd64.deb
+wget -c "http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.3.0-1ubuntu1~20.04_amd64.deb"
 dpkg -i *.deb
 rm *.deb
 
-wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.2.0-13ubuntu1_amd64.deb
+wget -c "http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.3.0-1ubuntu1~20.04_amd64.deb"
 dpkg -i *.deb
 rm *.deb
 
-wget -c http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libstdc++6_10.2.0-13ubuntu1_amd64.deb
+wget -c "http://cn.archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libstdc++6_10.3.0-1ubuntu1~20.04_amd64.deb"
 dpkg -i *.deb
 rm *.deb
 
