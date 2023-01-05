@@ -15,5 +15,5 @@ https://dorabot.com.cn/Products/info_itemid_45.html
 https://www.youtube.com/watch?v=lqzgi5NFugA
 
 ### Contact info:
-dorahand@dorabot.com
+youzhou.chang@dorabot.com
 
